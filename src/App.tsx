@@ -18,6 +18,7 @@ import { BlogSection } from './components/BlogSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { StickyMobileBar } from './components/StickyMobileBar';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { SeoStructuredData } from './components/SeoStructuredData';
 import { ArticleItem, ARTICLES } from './data/pancangData';
@@ -251,6 +252,9 @@ export default function App() {
 
       {/* Semantic Footer */}
       <Footer onNavigate={scrollToSection} />
+
+      {/* Floating WhatsApp Action Button (Right Side) */}
+      <FloatingWhatsApp />
 
       {/* Sticky Mobile Conversion Bar (Bottom Screen) */}
       <StickyMobileBar

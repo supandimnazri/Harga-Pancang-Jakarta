@@ -12,9 +12,9 @@ export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({
 }) => {
   const handleDirectWhatsApp = () => {
     const textMsg = encodeURIComponent(
-      'Halo Tim Harga Pancang Jakarta, saya ingin cek harga tiang pancang & estimasi biaya jasa pemancangan untuk proyek saya di Jakarta.'
+      'Hallo Bapak Ilham, saya ingin cek harga tiang pancang & estimasi biaya jasa pemancangan untuk proyek saya di Jakarta.'
     );
-    window.location.href = `https://wa.me/6281234567890?text=${textMsg}`;
+    window.open(`https://wa.me/628132222156?text=${textMsg}`, '_blank');
   };
 
   return (

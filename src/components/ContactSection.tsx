@@ -30,7 +30,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialData }) =
 
     // Build WhatsApp URL with pre-filled message
     const textMsg = encodeURIComponent(
-      `Halo Tim Harga Pancang Jakarta, saya ingin konsultasi & cek harga proyek:\n\n` +
+      `Hallo Bapak Ilham, saya ingin konsultasi & cek harga proyek pemancangan Jakarta:\n\n` +
       `• Nama: ${name}\n` +
       `• Telepon: ${phone}\n` +
       `• Lokasi Proyek: ${projectLocation}\n` +
@@ -43,7 +43,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialData }) =
     // Open WhatsApp in current tab or simulated submit
     setIsSubmitted(true);
     setTimeout(() => {
-      window.location.href = `https://wa.me/6281234567890?text=${textMsg}`;
+      window.open(`https://wa.me/628132222156?text=${textMsg}`, '_blank');
     }, 1200);
   };
 
