@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { Phone, Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface HeaderProps {
-  activeSection: string;
-  onNavigate: (sectionId: string) => void;
+  activePage: string;
+  onNavigate: (pageId: string) => void;
   onOpenContactModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  activeSection,
+  activePage,
   onNavigate,
   onOpenContactModal
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'beranda', label: 'Beranda' },
-    { id: 'harga', label: 'Harga Pancang' },
-    { id: 'jenis-tiang', label: 'Jenis Tiang Pancang' },
-    { id: 'jasa-pancang', label: 'Jasa Pancang' },
-    { id: 'area-layanan', label: 'Area Layanan' },
-    { id: 'artikel', label: 'Artikel' }
+    { id: 'beranda', label: 'Beranda', href: '/' },
+    { id: 'harga', label: 'Harga Pancang', href: '/harga-pancang-jakarta/' },
+    { id: 'jenis-tiang', label: 'Jenis Tiang Pancang', href: '/jenis-tiang-pancang/' },
+    { id: 'jasa-pancang', label: 'Jasa Pancang', href: '/jasa-pancang-jakarta/' },
+    { id: 'area-layanan', label: 'Area Layanan', href: '/area-layanan/' },
+    { id: 'artikel', label: 'Artikel', href: '/artikel/' }
   ];
 
   const handleNavClick = (id: string) => {
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
           
           {/* Zone 1: Brand Wordmark (Single text element) */}
           <a
-            href="#beranda"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('beranda');
@@ -55,13 +55,13 @@ export const Header: React.FC<HeaderProps> = ({
             {navItems.map((item) => (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(item.id);
                 }}
                 className={`whitespace-nowrap shrink-0 transition-colors py-1 ${
-                  activeSection === item.id
+                  activePage === item.id
                     ? 'text-orange-600 font-bold border-b-2 border-orange-600'
                     : 'hover:text-slate-900'
                 }`}
@@ -103,13 +103,13 @@ export const Header: React.FC<HeaderProps> = ({
             {navItems.map((item) => (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(item.id);
                 }}
                 className={`px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
-                  activeSection === item.id
+                  activePage === item.id
                     ? 'bg-orange-50 text-orange-600 font-bold'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                 }`}
@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             ))}
             <a
-              href="#kontak"
+              href="/kontak/"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('kontak');

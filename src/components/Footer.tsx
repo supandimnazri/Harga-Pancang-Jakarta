@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <a
-                  href="#beranda"
+                  href="/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('beranda');
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="#harga"
+                  href="/harga-pancang-jakarta/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('harga');
@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="#jasa-pancang"
+                  href="/jasa-pancang-jakarta/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('jasa-pancang');
@@ -77,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="#jenis-tiang"
+                  href="/jenis-tiang-pancang/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('jenis-tiang');
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="#area-layanan"
+                  href="/area-layanan/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('area-layanan');
@@ -101,26 +101,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="#artikel"
+                  href="/artikel/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('artikel');
                   }}
                   className="hover:text-white transition-colors"
                 >
-                  Artikel
+                  Artikel & Panduan
                 </a>
               </li>
               <li>
                 <a
-                  href="#kontak"
+                  href="/kontak/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('kontak');
                   }}
                   className="hover:text-white transition-colors"
                 >
-                  Kontak
+                  Kontak & Estimasi
                 </a>
               </li>
             </ul>

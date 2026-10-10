@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+  <!-- 1. Halaman Beranda (Homepage) -->
   <url>
     <loc>https://hargapancangjakarta.com/</loc>
-    <lastmod>2026-10-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Artikel SEO & Panduan Harga -->
+  <!-- 2. Halaman Menu: Harga Pancang Jakarta -->
+  <url>
+    <loc>https://hargapancangjakarta.com/harga-pancang-jakarta/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. Halaman Menu: Jenis Tiang Pancang -->
+  <url>
+    <loc>https://hargapancangjakarta.com/jenis-tiang-pancang/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 4. Halaman Menu: Jasa Pancang Jakarta -->
+  <url>
+    <loc>https://hargapancangjakarta.com/jasa-pancang-jakarta/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 5. Halaman Menu: Area Layanan -->
+  <url>
+    <loc>https://hargapancangjakarta.com/area-layanan/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 6. Halaman Menu: Artikel & Panduan -->
+  <url>
+    <loc>https://hargapancangjakarta.com/artikel/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 7. Halaman Menu: Kontak & Estimasi -->
+  <url>
+    <loc>https://hargapancangjakarta.com/kontak/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 8. Daftar Lengkap Halaman Artikel Individual (SEO Slugs) -->
   <url>
     <loc>https://hargapancangjakarta.com/artikel/harga-tiang-pancang-beton-jakarta-terbaru</loc>
     <lastmod>2026-10-08</lastmod>

@@ -19,12 +19,20 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { StickyMobileBar } from './components/StickyMobileBar';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { SeoStructuredData } from './components/SeoStructuredData';
 import { ArticleItem, ARTICLES } from './data/pancangData';
 
+// Dedicated standalone page components
+import { HargaPage } from './pages/HargaPage';
+import { JenisTiangPage } from './pages/JenisTiangPage';
+import { JasaPancangPage } from './pages/JasaPancangPage';
+import { AreaLayananPage } from './pages/AreaLayananPage';
+import { ArtikelPage } from './pages/ArtikelPage';
+import { KontakPage } from './pages/KontakPage';
+import { ArticleSinglePage } from './pages/ArticleSinglePage';
+
 export default function App() {
-  const [activeSection, setActiveSection] = useState<string>('beranda');
+  const [currentPage, setCurrentPage] = useState<string>('beranda');
   const [selectedArticle, setSelectedArticle] = useState<ArticleItem | null>(null);
   const [inquiryPrefill, setInquiryPrefill] = useState<{
     item?: string;
@@ -32,52 +40,48 @@ export default function App() {
     notes?: string;
   } | undefined>(undefined);
 
-  // Parse path & hash for full SEO-friendly URLs
+  // Route matching with clean slugs and history sync
   const resolveLocation = () => {
-    const path = window.location.pathname.replace(/\/$/, '');
-    const hash = window.location.hash.replace('#', '');
+    const rawPath = window.location.pathname.toLowerCase();
+    const cleanPath = rawPath.replace(/\/$/, '');
+    const hash = window.location.hash.replace('#', '').toLowerCase();
 
-    // Check Article direct path or hash
-    if (path.startsWith('/artikel/')) {
-      const slug = path.replace('/artikel/', '');
-      const found = ARTICLES.find((a) => a.slug === slug);
+    // 1. Article Single Page Route (/artikel/:slug)
+    if (cleanPath.startsWith('/artikel/')) {
+      const slug = cleanPath.replace('/artikel/', '');
+      const found = ARTICLES.find((a) => a.slug.toLowerCase() === slug);
       if (found) {
         setSelectedArticle(found);
+        setCurrentPage('artikel-single');
         return;
       }
     } else if (hash.startsWith('artikel-')) {
       const slug = hash.replace('artikel-', '');
-      const found = ARTICLES.find((a) => a.slug === slug);
+      const found = ARTICLES.find((a) => a.slug.toLowerCase() === slug);
       if (found) {
         setSelectedArticle(found);
+        setCurrentPage('artikel-single');
         return;
       }
+    }
+
+    setSelectedArticle(null);
+
+    // 2. Dedicated Pages with distinct URLs/slugs
+    if (cleanPath === '/harga-pancang-jakarta' || cleanPath.includes('harga') || hash === 'harga') {
+      setCurrentPage('harga');
+    } else if (cleanPath === '/jenis-tiang-pancang' || cleanPath.includes('jenis-tiang') || hash === 'jenis-tiang') {
+      setCurrentPage('jenis-tiang');
+    } else if (cleanPath === '/jasa-pancang-jakarta' || cleanPath.includes('jasa-pancang') || hash === 'jasa-pancang') {
+      setCurrentPage('jasa-pancang');
+    } else if (cleanPath === '/area-layanan' || hash === 'area-layanan') {
+      setCurrentPage('area-layanan');
+    } else if (cleanPath === '/artikel' || hash === 'artikel') {
+      setCurrentPage('artikel');
+    } else if (cleanPath === '/kontak' || hash === 'kontak') {
+      setCurrentPage('kontak');
     } else {
-      setSelectedArticle(null);
-    }
-
-    // Check SEO URL aliases
-    let targetSection = 'beranda';
-    if (path.includes('harga-tiang-pancang') || path.includes('harga-mini-pile') || path.includes('harga-pancang-jakarta') || hash === 'harga') {
-      targetSection = 'harga';
-    } else if (path.includes('jenis-tiang-pancang') || hash === 'jenis-tiang') {
-      targetSection = 'jenis-tiang';
-    } else if (path.includes('jasa-pancang-jakarta') || hash === 'jasa-pancang') {
-      targetSection = 'jasa-pancang';
-    } else if (path.includes('area-layanan') || hash === 'area-layanan') {
-      targetSection = 'area-layanan';
-    } else if (path === '/artikel' || hash === 'artikel') {
-      targetSection = 'artikel';
-    } else if (path.includes('kontak') || hash === 'kontak') {
-      targetSection = 'kontak';
-    }
-
-    if (targetSection !== 'beranda') {
-      setActiveSection(targetSection);
-      const elem = document.getElementById(targetSection);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
-      }
+      setCurrentPage('beranda');
     }
   };
 
@@ -92,34 +96,43 @@ export default function App() {
     };
   }, []);
 
-  // Update document title & metadata dynamically
+  // Update Document Title, Meta Description & Canonical Tag dynamically
   useEffect(() => {
     let canonical = 'https://hargapancangjakarta.com/';
     let metaDesc = 'Informasi harga pancang Jakarta, harga tiang pancang, mini pile, spun pile, HSPD dan jasa pemancangan untuk berbagai kebutuhan proyek konstruksi.';
+    let title = 'Harga Pancang Jakarta | Harga Tiang & Jasa Pancang Terpercaya';
 
-    if (selectedArticle) {
-      document.title = `${selectedArticle.seoTitle || selectedArticle.title} | Harga Pancang Jakarta`;
+    if (selectedArticle && currentPage === 'artikel-single') {
+      title = `${selectedArticle.seoTitle || selectedArticle.title} | Harga Pancang Jakarta`;
       canonical = `https://hargapancangjakarta.com/artikel/${selectedArticle.slug}`;
       metaDesc = selectedArticle.metaDescription;
-    } else if (activeSection === 'harga') {
-      document.title = 'Harga Tiang Pancang Jakarta Terbaru 2026 | Mini Pile & Spun Pile';
+    } else if (currentPage === 'harga') {
+      title = 'Harga Tiang Pancang Jakarta Terbaru 2026 | Mini Pile & Spun Pile';
       canonical = 'https://hargapancangjakarta.com/harga-pancang-jakarta/';
-      metaDesc = 'Daftar harga tiang pancang beton Jakarta, mini pile 25x25, 30x30, spun pile silinder K-600, dan biaya jasa pemancangan hidrolik HSPD.';
-    } else if (activeSection === 'jasa-pancang') {
-      document.title = 'Jasa Pancang Jakarta | Layanan Pemancangan Profesional HSPD';
-      canonical = 'https://hargapancangjakarta.com/jasa-pancang-jakarta/';
-      metaDesc = 'Jasa pemancangan tiang pancang di Jakarta untuk gedung, ruko, gudang, pabrik, dan perumahan menggunakan metode HSPD bebas getaran.';
-    } else if (activeSection === 'jenis-tiang') {
-      document.title = 'Jenis Tiang Pancang Beton | Mini Pile, Spun Pile & Sheet Pile';
+      metaDesc = 'Daftar harga tiang pancang beton Jakarta, mini pile 25x25, 30x30, spun pile silinder K-600, dan simulasi biaya jasa pemancangan hidrolik HSPD.';
+    } else if (currentPage === 'jenis-tiang') {
+      title = 'Jenis Tiang Pancang Beton | Mini Pile, Spun Pile & Sheet Pile Jakarta';
       canonical = 'https://hargapancangjakarta.com/jenis-tiang-pancang/';
-      metaDesc = 'Kenali jenis-jenis tiang pancang untuk konstruksi di Jakarta: mini pile kotak, spun pile pratekan, sheet pile penahan tanah, dan spesifikasinya.';
-    } else if (activeSection === 'area-layanan') {
-      document.title = 'Area Layanan Pancang Jakarta & Jabodetabek | Harga Pancang Jakarta';
+      metaDesc = 'Kenali jenis-jenis tiang pancang untuk konstruksi di Jakarta: mini pile kotak, segitiga, spun pile pratekan, sheet pile penahan tanah, dan spesifikasinya.';
+    } else if (currentPage === 'jasa-pancang') {
+      title = 'Jasa Pancang Jakarta | Layanan Pemancangan Profesional HSPD Bebas Getaran';
+      canonical = 'https://hargapancangjakarta.com/jasa-pancang-jakarta/';
+      metaDesc = 'Jasa pemancangan tiang pancang di Jakarta untuk gedung, ruko, gudang, pabrik, dan perumahan menggunakan metode HSPD hidrolik bebas getaran.';
+    } else if (currentPage === 'area-layanan') {
+      title = 'Area Layanan Pancang Jakarta & Bodetabek | Jangkauan Mobilisasi Alat';
       canonical = 'https://hargapancangjakarta.com/area-layanan/';
       metaDesc = 'Jangkauan mobilisasi pemancangan tiang beton di Jakarta Pusat, Barat, Selatan, Timur, Utara, Tangerang, Bekasi, Depok, dan Bogor.';
-    } else {
-      document.title = 'Harga Pancang Jakarta | Harga Tiang & Jasa Pancang';
+    } else if (currentPage === 'artikel') {
+      title = 'Artikel & Panduan Konstruksi Tiang Pancang Jakarta | Tips RAB & Geoteknik';
+      canonical = 'https://hargapancangjakarta.com/artikel/';
+      metaDesc = 'Kumpulan panduan teknis, tips perhitungan RAB pondasi, perbandingan bore pile vs tiang pancang, dan wawasan geoteknik konstruksi Jakarta.';
+    } else if (currentPage === 'kontak') {
+      title = 'Kontak & Estimasi Harga Pancang Jakarta | Konsultasi Proyek Gratis';
+      canonical = 'https://hargapancangjakarta.com/kontak/';
+      metaDesc = 'Hubungi tim ahli pemancangan Jakarta untuk konsultasi teknis kebutuhan tiang pancang, survei lokasi, dan permintaan penawaran harga RAB gratis.';
     }
+
+    document.title = title;
 
     // Update or insert canonical tag
     let linkCanonical = document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
@@ -132,134 +145,160 @@ export default function App() {
     if (metaDescTag) {
       metaDescTag.content = metaDesc;
     }
-  }, [selectedArticle, activeSection]);
+  }, [currentPage, selectedArticle]);
 
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId);
-    if (sectionId === 'beranda') {
-      window.history.pushState(null, '', '/');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      let pathSlug = `/${sectionId}/`;
-      if (sectionId === 'harga') pathSlug = '/harga-pancang-jakarta/';
-      if (sectionId === 'jenis-tiang') pathSlug = '/jenis-tiang-pancang/';
-      if (sectionId === 'jasa-pancang') pathSlug = '/jasa-pancang-jakarta/';
-      if (sectionId === 'area-layanan') pathSlug = '/area-layanan/';
-      if (sectionId === 'artikel') pathSlug = '/artikel/';
+  // Navigate to slug and push browser history
+  const navigateTo = (target: string) => {
+    setSelectedArticle(null);
+    setCurrentPage(target);
 
-      window.history.pushState(null, '', pathSlug);
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    let pathSlug = '/';
+    if (target === 'harga') pathSlug = '/harga-pancang-jakarta/';
+    else if (target === 'jenis-tiang') pathSlug = '/jenis-tiang-pancang/';
+    else if (target === 'jasa-pancang') pathSlug = '/jasa-pancang-jakarta/';
+    else if (target === 'area-layanan') pathSlug = '/area-layanan/';
+    else if (target === 'artikel') pathSlug = '/artikel/';
+    else if (target === 'kontak') pathSlug = '/kontak/';
+
+    window.history.pushState(null, '', pathSlug);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleOpenInquiry = (data?: { item?: string; dimension?: string; notes?: string }) => {
     if (data) {
       setInquiryPrefill(data);
     }
-    scrollToSection('kontak');
+    navigateTo('kontak');
   };
 
   const handleSelectArticle = (article: ArticleItem) => {
     setSelectedArticle(article);
+    setCurrentPage('artikel-single');
     window.history.pushState(null, '', `/artikel/${article.slug}`);
-  };
-
-  const handleCloseArticle = () => {
-    setSelectedArticle(null);
-    window.history.pushState(null, '', '/artikel/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-orange-600 selection:text-white pb-14 lg:pb-0">
       
       {/* Dynamic SEO JSON-LD Structured Data */}
-      <SeoStructuredData currentArticle={selectedArticle} />
+      <SeoStructuredData currentPage={currentPage} currentArticle={selectedArticle} />
 
-      {/* Top Bar Header */}
+      {/* Top Bar Header with Active Page Slug Links */}
       <Header
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-        onOpenContactModal={() => scrollToSection('kontak')}
+        activePage={currentPage}
+        onNavigate={navigateTo}
+        onOpenContactModal={() => navigateTo('kontak')}
       />
 
-      {/* Semantic Main Content */}
+      {/* Semantic Main Content by Route */}
       <main className="flex-grow">
-        
-        {/* 1. Hero Section */}
-        <Hero
-          onCheckPrice={() => scrollToSection('harga')}
-          onConsult={() => scrollToSection('kontak')}
-        />
+        {currentPage === 'beranda' && (
+          <div className="animate-fadeIn">
+            {/* 1. Hero Section */}
+            <Hero
+              onCheckPrice={() => navigateTo('harga')}
+              onConsult={() => navigateTo('kontak')}
+            />
 
-        {/* 2. Section Harga & Interactive Cost Estimator */}
-        <PricingSection onOpenInquiry={handleOpenInquiry} />
+            {/* 2. Section Harga & Estimator */}
+            <PricingSection onOpenInquiry={handleOpenInquiry} />
 
-        {/* 3. Section Jenis Tiang Pancang */}
-        <PileTypesSection
-          onSelectTypeForInquiry={(pileName) => {
-            handleOpenInquiry({
-              item: pileName,
-              notes: `Berminat penawaran untuk jenis tiang ${pileName}.`
-            });
-          }}
-        />
+            {/* 3. Section Jenis Tiang Pancang */}
+            <PileTypesSection
+              onSelectTypeForInquiry={(pileName) => {
+                handleOpenInquiry({
+                  item: pileName,
+                  notes: `Berminat penawaran untuk jenis tiang ${pileName}.`
+                });
+              }}
+            />
 
-        {/* 4. Section Metode Pemancangan */}
-        <MethodsSection />
+            {/* 4. Section Metode Pemancangan */}
+            <MethodsSection />
 
-        {/* 5. Section Jasa Pancang (with natural dofollow link to masterpondasi.com) */}
-        <ServicesSection />
+            {/* 5. Section Jasa Pancang (dengan natural dofollow link ke masterpondasi.com) */}
+            <ServicesSection />
 
-        {/* 6. Section Rekomendasi Master Pondasi */}
-        <MasterPondasiSection />
+            {/* 6. Section Rekomendasi Master Pondasi */}
+            <MasterPondasiSection />
 
-        {/* 7. Section Area Layanan (DKI Jakarta + Bodetabek) */}
-        <ServiceAreaSection
-          onSelectAreaForQuote={(areaName) => {
-            handleOpenInquiry({
-              notes: `Tanya estimasi harga & mobilisasi ke wilayah ${areaName}.`
-            });
-          }}
-        />
+            {/* 7. Section Area Layanan (DKI Jakarta + Bodetabek) */}
+            <ServiceAreaSection
+              onSelectAreaForQuote={(areaName) => {
+                handleOpenInquiry({
+                  notes: `Tanya estimasi harga & mobilisasi ke wilayah ${areaName}.`
+                });
+              }}
+            />
 
-        {/* 8. Section Faktor yang Mempengaruhi Harga */}
-        <CostFactorsSection onConsult={() => scrollToSection('kontak')} />
+            {/* 8. Section Faktor yang Mempengaruhi Harga */}
+            <CostFactorsSection onConsult={() => navigateTo('kontak')} />
 
-        {/* 9. Section FAQ dengan valid Schema */}
-        <FaqSection onAskDirect={() => scrollToSection('kontak')} />
+            {/* 9. Section FAQ dengan valid Schema */}
+            <FaqSection onAskDirect={() => navigateTo('kontak')} />
 
-        {/* 10. Section Artikel / Blog dengan SEO Search & Filter */}
-        <BlogSection onSelectArticle={handleSelectArticle} />
+            {/* 10. Section Artikel / Blog dengan SEO Search & Filter */}
+            <BlogSection onSelectArticle={handleSelectArticle} />
 
-        {/* 11. Section Kontak & Form Request Harga */}
-        <ContactSection initialData={inquiryPrefill} />
+            {/* 11. Section Kontak & Form Request Harga */}
+            <ContactSection initialData={inquiryPrefill} />
+          </div>
+        )}
 
+        {/* Dedicated Page: Harga Pancang (/harga-pancang-jakarta/) */}
+        {currentPage === 'harga' && (
+          <HargaPage onOpenInquiry={handleOpenInquiry} onNavigate={navigateTo} />
+        )}
+
+        {/* Dedicated Page: Jenis Tiang Pancang (/jenis-tiang-pancang/) */}
+        {currentPage === 'jenis-tiang' && (
+          <JenisTiangPage onOpenInquiry={handleOpenInquiry} onNavigate={navigateTo} />
+        )}
+
+        {/* Dedicated Page: Jasa Pancang (/jasa-pancang-jakarta/) */}
+        {currentPage === 'jasa-pancang' && (
+          <JasaPancangPage onOpenInquiry={handleOpenInquiry} onNavigate={navigateTo} />
+        )}
+
+        {/* Dedicated Page: Area Layanan (/area-layanan/) */}
+        {currentPage === 'area-layanan' && (
+          <AreaLayananPage onOpenInquiry={handleOpenInquiry} onNavigate={navigateTo} />
+        )}
+
+        {/* Dedicated Page: Artikel List (/artikel/) */}
+        {currentPage === 'artikel' && (
+          <ArtikelPage onSelectArticle={handleSelectArticle} onNavigate={navigateTo} />
+        )}
+
+        {/* Dedicated Page: Artikel Single (/artikel/:slug) */}
+        {currentPage === 'artikel-single' && selectedArticle && (
+          <ArticleSinglePage
+            article={selectedArticle}
+            onNavigate={navigateTo}
+            onSelectArticle={handleSelectArticle}
+            onOpenConsultation={() => handleOpenInquiry({
+              notes: `Konsultasi dari artikel: ${selectedArticle.title}`
+            })}
+          />
+        )}
+
+        {/* Dedicated Page: Kontak & Request Estimasi (/kontak/) */}
+        {currentPage === 'kontak' && (
+          <KontakPage initialData={inquiryPrefill} />
+        )}
       </main>
 
-      {/* Article Detail Reading Modal */}
-      <ArticleDetailModal
-        article={selectedArticle}
-        onClose={handleCloseArticle}
-        onSelectArticle={handleSelectArticle}
-        onOpenConsultation={() => {
-          handleCloseArticle();
-          scrollToSection('kontak');
-        }}
-      />
-
       {/* Semantic Footer */}
-      <Footer onNavigate={scrollToSection} />
+      <Footer onNavigate={navigateTo} />
 
-      {/* Floating WhatsApp Action Button (Right Side) */}
+      {/* Floating WhatsApp Action Button (Right Side: 0813-2222-156) */}
       <FloatingWhatsApp />
 
       {/* Sticky Mobile Conversion Bar (Bottom Screen) */}
       <StickyMobileBar
-        onOpenInquiry={() => scrollToSection('kontak')}
-        onOpenEstimator={() => scrollToSection('harga')}
+        onOpenInquiry={() => navigateTo('kontak')}
+        onOpenEstimator={() => navigateTo('harga')}
       />
 
     </div>

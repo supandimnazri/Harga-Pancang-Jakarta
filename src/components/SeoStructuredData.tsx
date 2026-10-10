@@ -2,10 +2,11 @@ import React from 'react';
 import { FAQS, ArticleItem } from '../data/pancangData';
 
 interface SeoStructuredDataProps {
+  currentPage: string;
   currentArticle: ArticleItem | null;
 }
 
-export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentArticle }) => {
+export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPage, currentArticle }) => {
   // WebSite schema
   const websiteSchema = {
     '@context': 'https://schema.org',
@@ -15,53 +16,84 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentArt
     description: 'Informasi harga pancang Jakarta, harga tiang pancang, mini pile, spun pile, HSPD dan jasa pemancangan untuk berbagai kebutuhan proyek konstruksi.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://hargapancangjakarta.com/?q={search_term_string}',
+      target: 'https://hargapancangjakarta.com/artikel/?q={search_term_string}',
       'query-input': 'required name=search_term_string'
     }
   };
 
-  // BreadcrumbList schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Beranda',
-        item: 'https://hargapancangjakarta.com/'
-      },
+  // Breadcrumb items based on current page
+  let breadcrumbItems = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Beranda',
+      item: 'https://hargapancangjakarta.com/'
+    }
+  ];
+
+  if (currentArticle) {
+    breadcrumbItems.push(
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Harga Pancang',
-        item: 'https://hargapancangjakarta.com/#harga'
+        name: 'Artikel',
+        item: 'https://hargapancangjakarta.com/artikel/'
       },
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Jasa Pancang',
-        item: 'https://hargapancangjakarta.com/#jasa-pancang'
-      },
-      {
-        '@type': 'ListItem',
-        position: 4,
-        name: 'Jenis Tiang Pancang',
-        item: 'https://hargapancangjakarta.com/#jenis-tiang'
-      },
-      {
-        '@type': 'ListItem',
-        position: 5,
-        name: 'Area Layanan',
-        item: 'https://hargapancangjakarta.com/#area-layanan'
-      },
-      {
-        '@type': 'ListItem',
-        position: 6,
-        name: 'Artikel',
-        item: 'https://hargapancangjakarta.com/#artikel'
+        name: currentArticle.title,
+        item: `https://hargapancangjakarta.com/artikel/${currentArticle.slug}`
       }
-    ]
+    );
+  } else if (currentPage === 'harga') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Harga Pancang Jakarta',
+      item: 'https://hargapancangjakarta.com/harga-pancang-jakarta/'
+    });
+  } else if (currentPage === 'jenis-tiang') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Jenis Tiang Pancang',
+      item: 'https://hargapancangjakarta.com/jenis-tiang-pancang/'
+    });
+  } else if (currentPage === 'jasa-pancang') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Jasa Pancang Jakarta',
+      item: 'https://hargapancangjakarta.com/jasa-pancang-jakarta/'
+    });
+  } else if (currentPage === 'area-layanan') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Area Layanan',
+      item: 'https://hargapancangjakarta.com/area-layanan/'
+    });
+  } else if (currentPage === 'artikel') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Artikel',
+      item: 'https://hargapancangjakarta.com/artikel/'
+    });
+  } else if (currentPage === 'kontak') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Kontak',
+      item: 'https://hargapancangjakarta.com/kontak/'
+    });
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems
   };
 
   // FAQPage schema
