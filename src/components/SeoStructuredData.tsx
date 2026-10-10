@@ -6,17 +6,19 @@ interface SeoStructuredDataProps {
   currentArticle: ArticleItem | null;
 }
 
+const BASE_URL = 'https://harga-pancang-jakarta.vercel.app';
+
 export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPage, currentArticle }) => {
   // WebSite schema
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Harga Pancang Jakarta',
-    url: 'https://hargapancangjakarta.com/',
+    url: `${BASE_URL}/`,
     description: 'Informasi harga pancang Jakarta, harga tiang pancang, mini pile, spun pile, HSPD dan jasa pemancangan untuk berbagai kebutuhan proyek konstruksi.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://hargapancangjakarta.com/artikel/?q={search_term_string}',
+      target: `${BASE_URL}/artikel/?q={search_term_string}`,
       'query-input': 'required name=search_term_string'
     }
   };
@@ -27,7 +29,7 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPag
       '@type': 'ListItem',
       position: 1,
       name: 'Beranda',
-      item: 'https://hargapancangjakarta.com/'
+      item: `${BASE_URL}/`
     }
   ];
 
@@ -37,13 +39,13 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPag
         '@type': 'ListItem',
         position: 2,
         name: 'Artikel',
-        item: 'https://hargapancangjakarta.com/artikel/'
+        item: `${BASE_URL}/artikel/`
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: currentArticle.title,
-        item: `https://hargapancangjakarta.com/artikel/${currentArticle.slug}`
+        item: `${BASE_URL}/artikel/${currentArticle.slug}`
       }
     );
   } else if (currentPage === 'harga') {
@@ -51,42 +53,42 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPag
       '@type': 'ListItem',
       position: 2,
       name: 'Harga Pancang Jakarta',
-      item: 'https://hargapancangjakarta.com/harga-pancang-jakarta/'
+      item: `${BASE_URL}/harga-pancang-jakarta/`
     });
   } else if (currentPage === 'jenis-tiang') {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: 'Jenis Tiang Pancang',
-      item: 'https://hargapancangjakarta.com/jenis-tiang-pancang/'
+      item: `${BASE_URL}/jenis-tiang-pancang/`
     });
   } else if (currentPage === 'jasa-pancang') {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: 'Jasa Pancang Jakarta',
-      item: 'https://hargapancangjakarta.com/jasa-pancang-jakarta/'
+      item: `${BASE_URL}/jasa-pancang-jakarta/`
     });
   } else if (currentPage === 'area-layanan') {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: 'Area Layanan',
-      item: 'https://hargapancangjakarta.com/area-layanan/'
+      item: `${BASE_URL}/area-layanan/`
     });
   } else if (currentPage === 'artikel') {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: 'Artikel',
-      item: 'https://hargapancangjakarta.com/artikel/'
+      item: `${BASE_URL}/artikel/`
     });
   } else if (currentPage === 'kontak') {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: 'Kontak',
-      item: 'https://hargapancangjakarta.com/kontak/'
+      item: `${BASE_URL}/kontak/`
     });
   }
 
@@ -117,7 +119,7 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPag
         '@type': 'Article',
         headline: currentArticle.title,
         description: currentArticle.metaDescription,
-        image: `https://hargapancangjakarta.com${currentArticle.featuredImage}`,
+        image: `${BASE_URL}${currentArticle.featuredImage}`,
         author: {
           '@type': 'Organization',
           name: 'Harga Pancang Jakarta'
@@ -127,14 +129,14 @@ export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPag
           name: 'Harga Pancang Jakarta',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://hargapancangjakarta.com/logo.png'
+            url: `${BASE_URL}/logo.png`
           }
         },
         datePublished: '2026-09-01T08:00:00+07:00',
         dateModified: '2026-10-08T10:00:00+07:00',
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://hargapancangjakarta.com/artikel/${currentArticle.slug}`
+          '@id': `${BASE_URL}/artikel/${currentArticle.slug}`
         }
       }
     : null;

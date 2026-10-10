@@ -98,37 +98,38 @@ export default function App() {
 
   // Update Document Title, Meta Description & Canonical Tag dynamically
   useEffect(() => {
-    let canonical = 'https://hargapancangjakarta.com/';
+    const baseUrl = 'https://harga-pancang-jakarta.vercel.app';
+    let canonical = `${baseUrl}/`;
     let metaDesc = 'Informasi harga pancang Jakarta, harga tiang pancang, mini pile, spun pile, HSPD dan jasa pemancangan untuk berbagai kebutuhan proyek konstruksi.';
     let title = 'Harga Pancang Jakarta | Harga Tiang & Jasa Pancang Terpercaya';
 
     if (selectedArticle && currentPage === 'artikel-single') {
       title = `${selectedArticle.seoTitle || selectedArticle.title} | Harga Pancang Jakarta`;
-      canonical = `https://hargapancangjakarta.com/artikel/${selectedArticle.slug}`;
+      canonical = `${baseUrl}/artikel/${selectedArticle.slug}`;
       metaDesc = selectedArticle.metaDescription;
     } else if (currentPage === 'harga') {
       title = 'Harga Tiang Pancang Jakarta Terbaru 2026 | Mini Pile & Spun Pile';
-      canonical = 'https://hargapancangjakarta.com/harga-pancang-jakarta/';
+      canonical = `${baseUrl}/harga-pancang-jakarta/`;
       metaDesc = 'Daftar harga tiang pancang beton Jakarta, mini pile 25x25, 30x30, spun pile silinder K-600, dan simulasi biaya jasa pemancangan hidrolik HSPD.';
     } else if (currentPage === 'jenis-tiang') {
       title = 'Jenis Tiang Pancang Beton | Mini Pile, Spun Pile & Sheet Pile Jakarta';
-      canonical = 'https://hargapancangjakarta.com/jenis-tiang-pancang/';
+      canonical = `${baseUrl}/jenis-tiang-pancang/`;
       metaDesc = 'Kenali jenis-jenis tiang pancang untuk konstruksi di Jakarta: mini pile kotak, segitiga, spun pile pratekan, sheet pile penahan tanah, dan spesifikasinya.';
     } else if (currentPage === 'jasa-pancang') {
       title = 'Jasa Pancang Jakarta | Layanan Pemancangan Profesional HSPD Bebas Getaran';
-      canonical = 'https://hargapancangjakarta.com/jasa-pancang-jakarta/';
+      canonical = `${baseUrl}/jasa-pancang-jakarta/`;
       metaDesc = 'Jasa pemancangan tiang pancang di Jakarta untuk gedung, ruko, gudang, pabrik, dan perumahan menggunakan metode HSPD hidrolik bebas getaran.';
     } else if (currentPage === 'area-layanan') {
       title = 'Area Layanan Pancang Jakarta & Bodetabek | Jangkauan Mobilisasi Alat';
-      canonical = 'https://hargapancangjakarta.com/area-layanan/';
+      canonical = `${baseUrl}/area-layanan/`;
       metaDesc = 'Jangkauan mobilisasi pemancangan tiang beton di Jakarta Pusat, Barat, Selatan, Timur, Utara, Tangerang, Bekasi, Depok, dan Bogor.';
     } else if (currentPage === 'artikel') {
       title = 'Artikel & Panduan Konstruksi Tiang Pancang Jakarta | Tips RAB & Geoteknik';
-      canonical = 'https://hargapancangjakarta.com/artikel/';
+      canonical = `${baseUrl}/artikel/`;
       metaDesc = 'Kumpulan panduan teknis, tips perhitungan RAB pondasi, perbandingan bore pile vs tiang pancang, dan wawasan geoteknik konstruksi Jakarta.';
     } else if (currentPage === 'kontak') {
       title = 'Kontak & Estimasi Harga Pancang Jakarta | Konsultasi Proyek Gratis';
-      canonical = 'https://hargapancangjakarta.com/kontak/';
+      canonical = `${baseUrl}/kontak/`;
       metaDesc = 'Hubungi tim ahli pemancangan Jakarta untuk konsultasi teknis kebutuhan tiang pancang, survei lokasi, dan permintaan penawaran harga RAB gratis.';
     }
 
