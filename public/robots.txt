@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.hargapancangjakarta.site/sitemap.xml
+Sitemap: https://hargapancangjakarta.site/sitemap.xml
+Sitemap: https://hargapancangjakarta.site/sitemap-root.xml
