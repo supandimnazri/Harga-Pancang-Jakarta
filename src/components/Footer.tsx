@@ -15,9 +15,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-orange-600 flex items-center justify-center text-white font-extrabold text-sm">
-                HP
-              </div>
+              <img
+                src="/logo.png"
+                alt="Logo Harga Pancang Jakarta"
+                className="w-10 h-10 rounded-lg object-contain bg-white p-0.5 border border-slate-700 shadow-xs"
+              />
               <span className="text-xl font-extrabold text-white tracking-tight">
                 Harga Pancang Jakarta
               </span>

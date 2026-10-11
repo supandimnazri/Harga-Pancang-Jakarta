@@ -6,7 +6,7 @@ interface SeoStructuredDataProps {
   currentArticle: ArticleItem | null;
 }
 
-const BASE_URL = 'https://hargapancangjakarta.site';
+const BASE_URL = 'https://www.hargapancangjakarta.site';
 
 export const SeoStructuredData: React.FC<SeoStructuredDataProps> = ({ currentPage, currentArticle }) => {
   // WebSite schema
