@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://harga-pancang-jakarta.vercel.app/sitemap.xml
+Sitemap: https://hargapancangjakarta.site/sitemap.xml

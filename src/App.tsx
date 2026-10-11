@@ -98,7 +98,7 @@ export default function App() {
 
   // Update Document Title, Meta Description & Canonical Tag dynamically
   useEffect(() => {
-    const baseUrl = 'https://harga-pancang-jakarta.vercel.app';
+    const baseUrl = 'https://hargapancangjakarta.site';
     let canonical = `${baseUrl}/`;
     let metaDesc = 'Informasi harga pancang Jakarta, harga tiang pancang, mini pile, spun pile, HSPD dan jasa pemancangan untuk berbagai kebutuhan proyek konstruksi.';
     let title = 'Harga Pancang Jakarta | Harga Tiang & Jasa Pancang Terpercaya';
