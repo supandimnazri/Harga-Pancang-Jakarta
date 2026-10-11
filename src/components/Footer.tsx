@@ -141,11 +141,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </p>
               <div className="pt-1">
                 <a
-                  href="https://masterpondasi.com/"
-                  rel="dofollow"
+                  href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                  target="_blank"
+                  rel="noopener"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-orange-600 hover:bg-orange-500 px-3.5 py-2 rounded-lg transition-colors"
                 >
-                  <span>Jasa Pancang – Master Pondasi</span>
+                  <span>Jasa Pancang Jabodetabek</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -167,11 +168,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span>Standar Konstruksi Indonesia (SNI)</span>
             <span>·</span>
             <a
-              href="https://masterpondasi.com/"
-              rel="dofollow"
+              href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+              target="_blank"
+              rel="noopener"
               className="text-slate-400 hover:text-white transition-colors"
             >
-              Jasa Pancang – Master Pondasi
+              Jasa Pancang Jabodetabek
             </a>
           </div>
         </div>

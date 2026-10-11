@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowDown, MessageSquare, ShieldCheck, CheckCircle2, ChevronRight } from 'lucide-react';
-import heroImage from '../assets/images/hero_pancang_jakarta_1791517475722.jpg';
+import { GDRIVE_IMAGE_URL, onDriveImageError } from '../constants/images';
 
 interface HeroProps {
   onCheckPrice: () => void;
@@ -86,11 +86,14 @@ export const Hero: React.FC<HeroProps> = ({ onCheckPrice, onConsult }) => {
               <span>
                 Pelaksanaan jasa pemancangan resmi didukung oleh partner tepercaya{' '}
                 <a
-                  href="https://masterpondasi.com/"
+                  href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                  target="_blank"
+                  rel="noopener"
                   className="text-orange-400 hover:text-orange-300 font-medium underline underline-offset-2"
                 >
-                  Master Pondasi
-                </a>.
+                  Jasa Pancang Jabodetabek
+                </a>{' '}
+                dari Master Pondasi.
               </span>
             </div>
           </div>
@@ -99,8 +102,9 @@ export const Hero: React.FC<HeroProps> = ({ onCheckPrice, onConsult }) => {
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl overflow-hidden border border-slate-700 bg-slate-800 shadow-2xl group">
               <img
-                src={heroImage}
-                alt="Tiang pancang beton dan alat pancang hidrolik HSPD di proyek pondasi Jakarta"
+                src={GDRIVE_IMAGE_URL}
+                onError={onDriveImageError}
+                alt="Proyek pemancangan tiang pancang beton di lapangan Jakarta"
                 loading="eager"
                 referrerPolicy="no-referrer"
                 className="w-full h-72 sm:h-96 lg:h-[430px] object-cover group-hover:scale-105 transition-transform duration-700"

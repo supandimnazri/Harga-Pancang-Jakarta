@@ -13,6 +13,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { ArticleItem, ARTICLES } from '../data/pancangData';
+import { onDriveImageError } from '../constants/images';
 
 interface ArticleDetailModalProps {
   article: ArticleItem | null;
@@ -145,6 +146,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           <figure className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-900">
             <img
               src={article.featuredImage}
+              onError={onDriveImageError}
               alt={article.imageAlt}
               loading="lazy"
               referrerPolicy="no-referrer"
@@ -186,23 +188,16 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 Konsultasi & Rekomendasi Pelaksanaan Pondasi
               </h3>
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                Untuk kebutuhan pelaksanaan pekerjaan pemancangan, Anda dapat melihat informasi layanan{' '}
+                Untuk kebutuhan pelaksanaan pekerjaan pemancangan tiang beton dan pengoperasian armada alat berat di wilayah Jakarta dan sekitarnya, Anda dapat melihat rincian layanan{' '}
                 <a
-                  href="https://masterpondasi.com/"
-                  rel="dofollow"
+                  href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                  target="_blank"
+                  rel="noopener"
                   className="font-bold text-orange-600 hover:text-orange-500 underline underline-offset-4"
                 >
-                  Jasa Pancang
+                  Jasa Pancang Jabodetabek
                 </a>{' '}
-                dari{' '}
-                <a
-                  href="https://masterpondasi.com/"
-                  rel="dofollow"
-                  className="font-bold text-orange-600 hover:text-orange-500 underline underline-offset-4"
-                >
-                  Master Pondasi
-                </a>
-                . Pastikan proyek Anda didukung oleh pengujian tanah yang memadai dan tim teknis berpengalaman di Jakarta.
+                dari Master Pondasi. Pastikan proyek Anda didukung oleh pengujian tanah yang memadai dan tim teknis berpengalaman.
               </p>
             </div>
 

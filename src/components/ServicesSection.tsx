@@ -117,24 +117,26 @@ export const ServicesSection: React.FC = () => {
               Pelaksanaan Lapangan Profesional
             </div>
             <p className="text-sm text-slate-700 leading-relaxed">
-              Untuk kebutuhan pelaksanaan pekerjaan pemancangan, Anda dapat melihat informasi layanan{' '}
+              Untuk kebutuhan pelaksanaan pekerjaan pemancangan proyek di wilayah Jakarta, Bogor, Depok, Tangerang, dan Bekasi, Anda dapat melihat informasi layanan{' '}
               <a
-                href="https://masterpondasi.com/"
-                rel="dofollow"
+                href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                target="_blank"
+                rel="noopener"
                 className="font-bold text-orange-600 hover:text-orange-500 underline underline-offset-4"
               >
-                Jasa Pancang
+                Jasa Pancang Jabodetabek
               </a>{' '}
               dari Master Pondasi.
             </p>
           </div>
 
           <a
-            href="https://masterpondasi.com/"
-            rel="dofollow"
+            href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+            target="_blank"
+            rel="noopener"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0"
           >
-            <span>Kunjungi Master Pondasi</span>
+            <span>Jasa Pancang Jabodetabek</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ARTICLES, ArticleItem } from '../data/pancangData';
 import { BookOpen, Calendar, Clock, ChevronRight, Search } from 'lucide-react';
+import { onDriveImageError } from '../constants/images';
 
 interface BlogSectionProps {
   onSelectArticle: (article: ArticleItem) => void;
@@ -88,6 +89,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onSelectArticle }) => 
                   <div className="relative h-48 overflow-hidden bg-slate-900">
                     <img
                       src={article.featuredImage}
+                      onError={onDriveImageError}
                       alt={article.imageAlt}
                       loading="lazy"
                       referrerPolicy="no-referrer"

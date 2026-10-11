@@ -14,6 +14,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { ArticleItem, ARTICLES } from '../data/pancangData';
+import { onDriveImageError } from '../constants/images';
 
 interface ArticleSinglePageProps {
   article: ArticleItem;
@@ -116,7 +117,10 @@ export const ArticleSinglePage: React.FC<ArticleSinglePageProps> = ({
             <div className="relative rounded-xl overflow-hidden mt-6 bg-slate-900">
               <img
                 src={article.featuredImage}
+                onError={onDriveImageError}
                 alt={article.imageAlt}
+                loading="lazy"
+                referrerPolicy="no-referrer"
                 className="w-full max-h-[460px] object-cover"
               />
               <div className="p-2.5 bg-slate-900/90 text-[11px] text-slate-300 text-center">
@@ -136,6 +140,21 @@ export const ArticleSinglePage: React.FC<ArticleSinglePageProps> = ({
                   {paragraph}
                 </p>
               ))}
+            </div>
+
+            {/* Natural Editorial Resource Link */}
+            <div className="mt-8 p-5 rounded-xl bg-orange-50/70 border border-orange-200/90 text-slate-800 text-xs sm:text-sm leading-relaxed">
+              <span className="font-bold text-orange-700">Rekomendasi Spesialis Lapangan: </span>
+              <span>Untuk konsultasi teknis, survei tanah lapangan, dan kebutuhan kontraktor pemancangan bersertifikasi di seluruh wilayah Jakarta dan sekitarnya, Anda dapat merujuk ke layanan resmi{' '}</span>
+              <a
+                href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                target="_blank"
+                rel="noopener"
+                className="font-bold text-orange-600 hover:text-orange-700 underline underline-offset-4"
+              >
+                Jasa Pancang Jabodetabek
+              </a>
+              <span> dari Master Pondasi.</span>
             </div>
 
             {/* Share and Action Buttons */}
@@ -184,7 +203,10 @@ export const ArticleSinglePage: React.FC<ArticleSinglePageProps> = ({
                   <div className="h-32 rounded-lg overflow-hidden mb-3 bg-slate-900">
                     <img
                       src={rel.featuredImage}
+                      onError={onDriveImageError}
                       alt={rel.imageAlt}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

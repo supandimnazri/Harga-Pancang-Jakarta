@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Layers, ShieldCheck, CheckCircle2, Building2, HardHat, ChevronRight } from 'lucide-react';
 import { PILE_TYPES, PileTypeInfo } from '../data/pancangData';
-import miniPileImg from '../assets/images/mini_pile_concrete_1791517494957.jpg';
-import spunPileImg from '../assets/images/spun_pile_cylindrical_1791517521542.jpg';
+import { GDRIVE_IMAGE_URL, onDriveImageError } from '../constants/images';
 
 interface PileTypesSectionProps {
   onSelectTypeForInquiry: (pileName: string) => void;
@@ -54,11 +53,8 @@ export const PileTypesSection: React.FC<PileTypesSectionProps> = ({ onSelectType
             {/* Visual Column */}
             <div className="lg:col-span-5 bg-slate-900 relative min-h-[260px] lg:min-h-full">
               <img
-                src={
-                  selectedPile.id === 'spun-pile' 
-                    ? spunPileImg 
-                    : miniPileImg
-                }
+                src={GDRIVE_IMAGE_URL}
+                onError={onDriveImageError}
                 alt={selectedPile.title}
                 loading="lazy"
                 referrerPolicy="no-referrer"

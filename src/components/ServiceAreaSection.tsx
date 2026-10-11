@@ -152,6 +152,36 @@ export const ServiceAreaSection: React.FC<ServiceAreaSectionProps> = ({ onSelect
 
         </div>
 
+        {/* Natural Regional Recommendation */}
+        <div className="mt-8 p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="text-xs font-bold uppercase tracking-wider text-orange-600">
+              Rekomendasi Kontraktor Wilayah
+            </div>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              Untuk kebutuhan survei titik pancang, pengujian tanah sondir, dan mobilisasi alat berat ke lokasi proyek Anda di seluruh area Jakarta maupun Bodetabek, Anda dapat berkonsultasi dengan penyedia{' '}
+              <a
+                href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                target="_blank"
+                rel="noopener"
+                className="font-bold text-orange-600 hover:text-orange-700 underline underline-offset-4"
+              >
+                Jasa Pancang Jabodetabek
+              </a>{' '}
+              dari Master Pondasi.
+            </p>
+          </div>
+          <a
+            href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0"
+          >
+            <span>Jasa Pancang Jabodetabek</span>
+            <ChevronRight className="w-4 h-4" />
+          </a>
+        </div>
+
       </div>
     </section>
   );

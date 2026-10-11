@@ -102,15 +102,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialData }) =
 
             {/* Direct Partner Notice */}
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
-              Pelaksanaan armada alat berat dan pemancangan lapangan didukung oleh{' '}
+              Pelaksanaan armada alat berat dan pemancangan lapangan didukung oleh spesialis{' '}
               <a
-                href="https://masterpondasi.com/"
-                rel="dofollow"
+                href="https://masterpondasi.com/layanan/jasa-pancang-jabodetabek/"
+                target="_blank"
+                rel="noopener"
                 className="font-bold text-orange-600 hover:text-orange-500 hover:underline"
               >
-                Master Pondasi
-              </a>
-              , spesialis pekerjaan pondasi dan pemancangan profesional di Indonesia.
+                Jasa Pancang Jabodetabek
+              </a>{' '}
+              dari Master Pondasi, terpercaya menangani proyek pondasi dan pemancangan di Indonesia.
             </div>
 
           </div>
