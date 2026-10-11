@@ -68,11 +68,11 @@ export default function App() {
     setSelectedArticle(null);
 
     // 2. Dedicated Pages with distinct URLs/slugs
-    if (cleanPath === '/harga-pancang-jakarta' || cleanPath.includes('harga') || hash === 'harga') {
+    if (cleanPath === '/harga-pancang-jakarta' || cleanPath === '/harga' || hash === 'harga') {
       setCurrentPage('harga');
-    } else if (cleanPath === '/jenis-tiang-pancang' || cleanPath.includes('jenis-tiang') || hash === 'jenis-tiang') {
+    } else if (cleanPath === '/jenis-tiang-pancang' || cleanPath === '/jenis-tiang' || hash === 'jenis-tiang') {
       setCurrentPage('jenis-tiang');
-    } else if (cleanPath === '/jasa-pancang-jakarta' || cleanPath.includes('jasa-pancang') || hash === 'jasa-pancang') {
+    } else if (cleanPath === '/jasa-pancang-jakarta' || cleanPath === '/jasa-pancang' || hash === 'jasa-pancang') {
       setCurrentPage('jasa-pancang');
     } else if (cleanPath === '/area-layanan' || hash === 'area-layanan') {
       setCurrentPage('area-layanan');

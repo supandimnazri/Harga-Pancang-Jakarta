@@ -1,81 +1,7 @@
+export * from './types';
+import { PricingItem, ServicePriceItem, PileTypeInfo, MethodInfo, AreaInfo, FaqItem, ArticleItem } from './types';
 import { GDRIVE_IMAGE_URL } from '../constants/images';
-
-export interface PricingItem {
-  category: string;
-  item: string;
-  dimension: string;
-  length: string;
-  concreteQuality: string;
-  estimatedPrice: string;
-  unit: string;
-  notes: string;
-}
-
-export interface ServicePriceItem {
-  method: string;
-  capacityOrType: string;
-  pricePerMeter: string;
-  minChargeOrSetup: string;
-  characteristics: string;
-  suitableFor: string;
-}
-
-export interface PileTypeInfo {
-  id: string;
-  name: string;
-  title: string;
-  image?: string;
-  definition: string;
-  function: string;
-  advantages: string[];
-  commonUses: string[];
-  specification: string;
-}
-
-export interface MethodInfo {
-  id: string;
-  name: string;
-  fullName: string;
-  noiseLevel: string;
-  vibrationLevel: string;
-  speed: string;
-  description: string;
-  advantages: string[];
-  disadvantages: string[];
-  urbanJakartaSuitability: string;
-}
-
-export interface AreaInfo {
-  name: string;
-  region: 'DKI Jakarta' | 'Bodetabek';
-  soilCharacteristics: string;
-  recommendedMethod: string;
-  coverageSubdistricts: string[];
-  commonProjects: string;
-}
-
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-export interface ArticleItem {
-  id: string;
-  slug: string;
-  title: string;
-  category: 'Harga Pancang' | 'Tiang Pancang' | 'Jasa Pancang' | 'Mini Pile' | 'HSPD' | 'Konstruksi';
-  seoTitle: string;
-  metaDescription: string;
-  date: string;
-  readTime: string;
-  author: string;
-  excerpt: string;
-  featuredImage: string;
-  imageAlt: string;
-  content: string[];
-  faq?: FaqItem[];
-  relatedSlugs: string[];
-}
+import { KECAMATAN_ARTICLES } from './kecamatanArticles';
 
 export const MINI_PILE_PRICES: PricingItem[] = [
   {
@@ -554,7 +480,7 @@ export const FAQS: FaqItem[] = [
   }
 ];
 
-export const ARTICLES: ArticleItem[] = [
+export const CORE_ARTICLES: ArticleItem[] = [
   {
     id: '1',
     slug: 'harga-tiang-pancang-beton-jakarta-terbaru',
@@ -776,3 +702,9 @@ export const ARTICLES: ArticleItem[] = [
     ]
   }
 ];
+
+export const ARTICLES: ArticleItem[] = [
+  ...CORE_ARTICLES,
+  ...KECAMATAN_ARTICLES,
+];
+
