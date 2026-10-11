@@ -146,6 +146,15 @@ export default function App() {
     if (metaDescTag) {
       metaDescTag.content = metaDesc;
     }
+
+    // Ensure active favicon with cache buster
+    const iconLinks = document.querySelectorAll("link[rel*='icon']");
+    iconLinks.forEach((link) => {
+      const el = link as HTMLLinkElement;
+      if (el.href && !el.href.includes('v=3')) {
+        el.href = el.href.includes('?') ? `${el.href}&v=3` : `${el.href}?v=3`;
+      }
+    });
   }, [currentPage, selectedArticle]);
 
   // Navigate to slug and push browser history

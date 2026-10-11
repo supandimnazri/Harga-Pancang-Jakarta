@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-3 text-slate-900 font-extrabold tracking-tight text-xl sm:text-2xl whitespace-nowrap shrink-0 group"
           >
             <img
-              src="/logo.png"
+              src="/logo.png?v=3"
               alt="Logo Harga Pancang Jakarta"
               className="w-10 h-10 rounded-lg object-contain bg-white border border-slate-200/80 p-0.5 shadow-2xs group-hover:scale-105 transition-transform"
             />

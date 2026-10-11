@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
+                src="/logo.png?v=3"
                 alt="Logo Harga Pancang Jakarta"
                 className="w-10 h-10 rounded-lg object-contain bg-white p-0.5 border border-slate-700 shadow-xs"
               />
