@@ -16,8 +16,8 @@ export const FloatingWhatsApp: React.FC = () => {
     >
       {/* Floating Speech / Callout Bubble */}
       {showTooltip && (
-        <div className="hidden sm:flex items-center gap-2 bg-white text-slate-800 px-3.5 py-2 rounded-xl shadow-lg border border-slate-200 text-xs font-semibold animate-bounce-subtle">
-          <span className="relative flex h-2 w-2">
+        <div className="flex items-center gap-2.5 bg-white text-slate-800 px-3.5 py-2.5 rounded-xl shadow-xl border border-slate-200 text-xs font-semibold animate-bounce-subtle max-w-[260px] sm:max-w-md">
+          <span className="relative flex h-2 w-2 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
@@ -25,16 +25,16 @@ export const FloatingWhatsApp: React.FC = () => {
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-600 transition-colors cursor-pointer"
+            className="hover:text-emerald-600 transition-colors cursor-pointer leading-tight text-slate-700"
           >
-            Hallo Bapak Ilham
+            Kami siap bantu untuk layanan Pancang jakarta, chat kami sekarang
           </a>
           <button
             onClick={() => setShowTooltip(false)}
-            className="text-slate-400 hover:text-slate-600 ml-1 p-0.5 rounded cursor-pointer"
+            className="text-slate-400 hover:text-slate-600 ml-1 p-0.5 rounded cursor-pointer shrink-0"
             aria-label="Tutup info chat"
           >
-            <X className="w-3 h-3" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
@@ -44,7 +44,7 @@ export const FloatingWhatsApp: React.FC = () => {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat WhatsApp dengan Bapak Ilham (0813-2222-156)"
+        aria-label="Kami siap bantu untuk layanan Pancang Jakarta, chat kami sekarang di WhatsApp (0813-2222-156)"
         className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group"
       >
         {/* Pulsing ring */}
